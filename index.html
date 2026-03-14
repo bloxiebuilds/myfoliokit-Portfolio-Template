@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FolioKit — Your Name</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* =====================
+       CONFIG — Edit these!
+    ===================== */
+    :root {
+      --name: "Your Name";
+      --accent: #6EE7B7;
+    }
+
+    /* =====================
+       THEME
+    ===================== */
+    [data-theme="dark"] {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f0;
+      --surface: #ffffff;
+      --border: #e0e0e0;
+      --text: #111;
+      --muted: #666;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+      max-width: 900px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+      border: none;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* =====================
+       SECTIONS
+    ===================== */
+    section {
+      padding: 5rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 2.5rem;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    /* =====================
+       ABOUT
+    ===================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    /* Edit about-text in index.html */
+
+    /* =====================
+       SKILLS
+    ===================== */
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .skill-tag {
+      padding: 0.5rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* =====================
+       PROJECTS
+    ===================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.25s;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(110,231,183,0.08);
+    }
+    .project-icon { font-size: 2rem; }
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .project-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .project-tag {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: auto;
+    }
+
+    /* =====================
+       CONTACT
+    ===================== */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+    }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+    .social-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .social-link {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">YourName.</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-tag">✦ Available for work</span>
+    <h1>Hi, I'm <span>Your Name</span>.<br/>I build things.</h1>
+    <p>
+      <!-- Edit this bio! -->
+      I'm a developer & creator passionate about building clean, purposeful digital experiences. Based somewhere cool.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 — About</div>
+    <h2>A little about me.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          <!-- Edit me! -->
+          Lorem ipsum — write something real about yourself here. What do you do? What do you care about? What are you building?
+        </p>
+        <p>
+          When I'm not coding, you can find me [your hobby], [another thing], or thinking about [what you think about].
+        </p>
+      </div>
+      <div class="about-text">
+        <p><strong style="color:var(--text)">🎓 Background</strong><br/>Add your education or background here.</p>
+        <br/>
+        <p><strong style="color:var(--text)">📍 Location</strong><br/>Your City, Country</p>
+        <br/>
+        <p><strong style="color:var(--text)">💼 Currently</strong><br/>What you're working on right now.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">02 — Skills</div>
+    <h2>What I work with.</h2>
+    <div class="skills-grid">
+      <!-- Add or remove skill tags as needed -->
+      <span class="skill-tag">HTML</span>
+      <span class="skill-tag">CSS</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Your Skill</span>
+      <span class="skill-tag">Another Skill</span>
+      <span class="skill-tag">Tool You Use</span>
+      <span class="skill-tag">Something You Know</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">03 — Projects</div>
+    <h2>Things I've built.</h2>
+    <div class="projects-grid">
+
+      <!-- PROJECT CARD — Duplicate this block to add more -->
+      <a href="#" class="project-card">
+        <div class="project-icon">🚀</div>
+        <h3>Project Name</h3>
+        <p>A short description of what this project does and why it's cool.</p>
+        <span class="project-tag">View Project →</span>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-icon">🎨</div>
+        <h3>Another Project</h3>
+        <p>Another short description. Keep it punchy and clear.</p>
+        <span class="project-tag">View Project →</span>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-icon">🔧</div>
+        <h3>Third Project</h3>
+        <p>What problem did this solve? Who uses it?</p>
+        <span class="project-tag">View Project →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">04 — Contact</div>
+    <h2>Let's talk.</h2>
+    <div class="contact-box">
+      <p>Got a project in mind, a question, or just want to say hi?<br/>My inbox is always open.</p>
+      <a href="mailto:your@email.com" class="btn btn-primary" style="margin-bottom:2rem;display:inline-block;">
+        ✉️ Say Hello
+      </a>
+      <br/><br/>
+      <div class="social-links">
+        <!-- Add/remove social links as needed -->
+        <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+        <a href="https://twitter.com/yourhandle" class="social-link">Twitter / X</a>
+        <a href="https://linkedin.com/in/yourprofile" class="social-link">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & built with ❤️ · Template by <a href="https://github.com/bloxiebuilds" target="_blank">bloxiebuilds</a> on GitHub</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const btn = document.querySelector('.theme-toggle');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = '🌙 Dark';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = '☀️ Light';
+      }
+    }
+  </script>
+
+</body>
+</html>
