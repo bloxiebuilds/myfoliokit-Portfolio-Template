@@ -20,15 +20,15 @@ Welcome! This guide will walk you through everything you need to get your portfo
 ## 1. Getting Started
 
 ### Option A — Use the Template (Recommended)
-1. Go to [github.com/bloxiebuilds/myfoliokit](https://github.com/bloxiebuilds/myfoliokit)
+1. Go to [github.com/bloxiebuilds/myfoliokit-Portfolio-Template](https://github.com/bloxiebuilds/myfoliokit-Portfolio-Template)
 2. Click the green **"Use this template"** button
 3. Name your new repo (e.g. `my-portfolio`)
 4. Click **"Create repository"**
 
 ### Option B — Clone it manually
 ```bash
-git clone https://github.com/bloxiebuilds/myfoliokit.git
-cd myfoliokit
+git clone https://github.com/bloxiebuilds/myfoliokit-Portfolio-Template.git
+cd myfoliokit-Portfolio-Template
 ```
 
 ### Preview it locally
@@ -150,7 +150,7 @@ This is how you get your portfolio live on the internet — **for free!**
 7. Wait ~60 seconds, then visit:
 
 ```
-https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPO-NAME
+https://YOUR-GITHUB-USERNAME.github.io/myfoliokit-Portfolio-Template
 ```
 
 🎉 Your portfolio is live!
