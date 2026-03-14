@@ -11,7 +11,7 @@ Welcome! This guide will walk you through everything you need to get your portfo
 3. [Adding Projects](#3-adding-projects)
 4. [Adding & Removing Skills](#4-adding--removing-skills)
 5. [Changing Colors](#5-changing-colors)
-6. [Updating Social Links](#6-updating-social-links)
+6. [Updating Contact Info & Social Links](#6-updating-contact-info--social-links)
 7. [Deploying to GitHub Pages](#7-deploying-to-github-pages)
 8. [FAQ](#8-faq)
 
@@ -103,15 +103,15 @@ Find the Skills section and look for the `<div class="skills-grid">` block.
 
 Near the top of `index.html`, find:
 ```css
---accent: #6EE7B7;
+--accent: #38BDF8;
 ```
 
-Replace `#6EE7B7` with any hex color you like. Here are some ideas:
+Replace `#38BDF8` with any hex color you like. Here are some ideas:
 
 | Color | Hex Code |
 |-------|----------|
-| Mint green (default) | `#6EE7B7` |
-| Sky blue | `#38BDF8` |
+| Sky blue (default) | `#38BDF8` |
+| Mint green | `#6EE7B7` |
 | Soft purple | `#A78BFA` |
 | Warm orange | `#FB923C` |
 | Hot pink | `#F472B6` |
@@ -121,18 +121,29 @@ Replace `#6EE7B7` with any hex color you like. Here are some ideas:
 
 ---
 
-## 6. Updating Social Links
+## 6. Updating Contact Info & Social Links
 
-Find the Contact section and update these lines:
+Find the Contact section and update your phone and email:
 
 ```html
-<a href="mailto:your@email.com" ...>✉️ Say Hello</a>
-<a href="https://github.com/yourusername" class="social-link">GitHub</a>
+<span class="social-link">📞 Phone: YOUR-NUMBER</span>
+<span class="social-link">📧 Email: your@email.com</span>
+```
+
+Just replace `YOUR-NUMBER` and `your@email.com` with your real details.
+
+### Social Links
+Below the phone and email, update your social links:
+
+```html
 <a href="https://twitter.com/yourhandle" class="social-link">Twitter / X</a>
 <a href="https://linkedin.com/in/yourprofile" class="social-link">LinkedIn</a>
 ```
 
-**To add a new social link**, copy one of the lines above and change the URL and label.
+**To add a new social link**, copy one of the lines above and change the URL and label:
+```html
+<a href="https://yoursite.com" class="social-link">Your Site</a>
+```
 **To remove a social link**, delete the full `<a ...>...</a>` line.
 
 ---
